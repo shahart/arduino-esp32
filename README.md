@@ -7,8 +7,8 @@ This project was part of the Makers972 meetup at Sparks 2025.
 ## What is in this repository?
 
 * Firmware for the internal and external component
-
-* ## Important assembly highlights
+  
+## Important assembly highlights
 
   1.Pay attention - Don't pinch the battery (button assembly can be dangerous)
   2.Carefully guid the led into the hole (right eye) while closing the printed robot
