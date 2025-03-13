@@ -31,6 +31,8 @@ void setup() {
   Serial.begin(115200);
   Serial.println("starting");
 
+  pinMode(D5, OUTPUT); // LED
+
 
   if (ESP_SLEEP_WAKEUP_GPIO != esp_sleep_get_wakeup_cause()) 
   {
@@ -46,6 +48,7 @@ void setup() {
     enterDeepSleep();
   }
 
+  digitalWrite(D5, HIGH);
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
 
@@ -70,6 +73,7 @@ void setup() {
   // doorbellMessage.ring_name = "star wars";
   doorbellMessage.play = true;
   esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *)&doorbellMessage, sizeof(doorbellMessage));
+  digitalWrite(D5, LOW);
   if (result == ESP_OK) {
     Serial.println("Sent with success");
   } else {
