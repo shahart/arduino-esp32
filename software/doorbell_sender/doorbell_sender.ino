@@ -1,11 +1,9 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-//RTC_DATA_ATTR int bootCount = 0;
-
 static RTC_DATA_ATTR struct timeval sleep_enter_time;
 
-uint8_t broadcastAddress[] = { 0x48, 0x3F, 0xDA, 0x64, 0x31, 0x52 };
+uint8_t broadcastAddress[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
 struct doorbell_message_t {
   bool play;
@@ -51,7 +49,7 @@ void setup() {
   digitalWrite(D5, HIGH);
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
-
+  
   // Init ESP-NOW
   if (esp_now_init() != ESP_OK) {
     Serial.println("Error initializing ESP-NOW");
