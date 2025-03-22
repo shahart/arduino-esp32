@@ -30,10 +30,17 @@ void playRing()
 
 void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
   memcpy(&doorbellMessage, incomingData, sizeof(doorbellMessage));
+  Serial.print("Sender: ");
+  for (int i = 0; i < 6; ++i) {
+    Serial.print(mac[i], HEX);
+    if (i < 5) {
+      Serial.print(":");
+    }
+
+  }
+  Serial.println();
   Serial.print("Bytes received: ");
   Serial.println(len);
-  // Serial.print("Ring name: ");
-  // Serial.println(doorbellMessage.ring_name);
   Serial.print("should play: ");
   Serial.println(doorbellMessage.play);
   Serial.println();
@@ -45,7 +52,7 @@ void setup()
 {
   Serial.begin(115200);
   delay(1000);
-
+  Serial.println();
   Serial.print("ESP Board MAC Address:  ");
   Serial.println(WiFi.macAddress());
 
@@ -60,7 +67,7 @@ void setup()
   esp_now_set_self_role(ESP_NOW_ROLE_SLAVE);
   esp_now_register_recv_cb(OnDataRecv);
 
-  Serial.printf("RTTTL start\n");
+  Serial.println("RTTTL start");
 
   audioLogger = &Serial;
 
