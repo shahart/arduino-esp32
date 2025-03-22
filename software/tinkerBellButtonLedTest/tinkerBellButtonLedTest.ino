@@ -22,7 +22,8 @@ void loop() {
   }
 
 
-  if(accumulator > 5)
+  // if(accumulator > 5)
+  if(1)
   {
     digitalWrite(D5, HIGH);  // turn the LED on (HIGH is the voltage level)
    delay(1000);
