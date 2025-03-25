@@ -14,13 +14,17 @@ struct doorbell_message_t {
 
 doorbell_message_t doorbellMessage;
 
-AudioGeneratorRTTTL *rtttl;
-AudioFileSourcePROGMEM *file;
-AudioOutputI2S *out;
+AudioGeneratorRTTTL *rtttl = NULL;
+AudioFileSourcePROGMEM *file = NULL;
+AudioOutputI2S *out = NULL;
 bool isPlaying = false;
 
 void playRing()
 {
+  delete file;
+  delete out;
+  delete rtttl;
+
   file = new AudioFileSourcePROGMEM(ring, strlen_P(ring));
   out = new AudioOutputI2S();
   rtttl = new AudioGeneratorRTTTL();
