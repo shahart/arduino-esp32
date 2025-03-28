@@ -3,7 +3,7 @@
 
 static RTC_DATA_ATTR struct timeval sleep_enter_time;
 
-uint8_t broadcastAddress[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+uint8_t broadcastAddress[] = { 0x48, 0x3F, 0xDA, 0x66, 0xE3, 0xDD };
 
 struct doorbell_message_t {
   bool play;
