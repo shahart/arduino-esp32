@@ -79,6 +79,16 @@ void setup()
 
 void loop()
 {
+  // Development: allow triggering the ringtone from Serial for testing without an ESP-NOW sender.
+  // Send the character 's' (followed by newline) from a serial terminal or the companion Python helper.
+  if (Serial.available()) {
+    String cmd = Serial.readStringUntil('\n');
+    cmd.trim();
+    if (cmd.equalsIgnoreCase("s")) {
+      Serial.println("Serial trigger received: playing ring");
+      doorbellMessage.play = true;
+    }
+  }
   if (isPlaying && rtttl->isRunning()) {
     if (!rtttl->loop())  
     {
